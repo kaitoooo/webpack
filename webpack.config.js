@@ -3,8 +3,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  // モードの設定、v4系以降はmodeを指定しないと、webpack実行時に警告が出るproduction
-  mode: 'development',
+  // 'development' | 'production'
+  mode: process.env.NODE_ENV || 'development',
   // エントリーポイントの設定
   entry: './src/js/main.js',
   // 出力の設定
