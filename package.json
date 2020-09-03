@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode=development",
+    "build": "cross-env NODE_ENV=production webpack --mode=production"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,8 @@
   },
   "dependencies": {
     "browserslist": "^4.14.0",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "mini-css-extract-plugin": "^0.11.0"
   }
 }
