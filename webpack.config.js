@@ -4,13 +4,16 @@ const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 //CSSを別ファイルに生成する
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// ビルドする際にHTMLも生成する
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // 'development' | 'production'
   mode: process.env.NODE_ENV,
   // エントリーポイントの設定
+  context: src,
   entry: {
-    main: './src/js/main.js',
+    main: './js/main.js',
   },
   // 出力の設定
   output: {
@@ -21,9 +24,15 @@ module.exports = {
   },
   // ローカルサーバの指定
   devServer: {
+    open: true,
     contentBase: src,
     watchContentBase: true,
     port: 3000,
+  },
+  // モジュールの解決方法を指定
+  resolve: {
+    modules: [src, 'node_modules'],
+    extensions: ['.js'],
   },
   module: {
     // babel-loaderの設定
@@ -73,7 +82,15 @@ module.exports = {
   // },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '/css/[name].css',
+      filename: 'css/[name].css',
+    }),
+    new HtmlWebpackPlugin({
+      publicPath: 'dist', // ビルド後のHTMLの出力先
+      filename: 'index.html', // 出力するHTMLのファイル名
+      template: 'index.html', // 出力するためのHTMLのテンプレート
+      minify: {
+        removeComments: true, // コメント削除、圧縮
+      },
     }),
   ],
 };
