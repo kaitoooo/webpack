@@ -1,23 +1,19 @@
-# package.json 作成
+# package.json に書かれているすべてのパッケージをインストールする
 
-npm init -y
-
-# webpack webpack-cli のインストール(package-lock.json 作成)
-
-npm install webpack webpack-cli --save
+npm install
 
 # 生成コマンド
 
 npm run build
 
-# 監視コマンド
+# 開発コマンド
 
-npm run watch
+npm run dev
 
 # swiper インストール
 
-npm -i swiper --save
+npm -i swiper --save-dev
 
 # vue インストール
 
-npm -i vue vue-loader vue-template-compiler --save
+npm -i vue vue-loader vue-template-compiler --save-dev
