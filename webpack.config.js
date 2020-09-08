@@ -1,20 +1,29 @@
-// output.pathに絶対パスを指定する必要があるため、pathモジュールを読み込んでおく
+// ディレクトリパスを取得する
 const path = require('path');
+const src = path.resolve(__dirname, 'src');
+const dist = path.resolve(__dirname, 'dist');
+//CSSを別ファイルに生成する
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // 'development' | 'production'
-  mode: process.env.NODE_ENV || 'development',
+  mode: process.env.NODE_ENV,
   // エントリーポイントの設定
   entry: {
-    main: [path.resolve(__dirname, 'src/js/main.js')],
+    main: './src/js/main.js',
   },
   // 出力の設定
   output: {
     // 出力するファイル名
     filename: 'js/[name].bundle.js',
-    // 出力先のパス（絶対パスを指定する必要がある）
-    path: path.resolve(__dirname, 'dist'),
+    // 出力先のパス
+    path: dist,
+  },
+  // ローカルサーバの指定
+  devServer: {
+    contentBase: src,
+    watchContentBase: true,
+    port: 3000,
   },
   module: {
     // babel-loaderの設定
