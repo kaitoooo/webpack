@@ -2,10 +2,12 @@
 const path = require('path');
 const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
-//CSSを別ファイルに生成する
+// CSSを別ファイルに生成する
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // ビルドする際にHTMLも生成する
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// キャッシュパラメータを付与する
+const cacheParam = new Date().getTime().toString();
 
 module.exports = {
   // 'development' | 'production'
@@ -85,6 +87,7 @@ module.exports = {
       filename: 'css/[name].css',
     }),
     new HtmlWebpackPlugin({
+      cacheParam: '?ver=' + cacheParam, // キャッシュパラメータ付与
       publicPath: 'dist', // ビルド後のHTMLの出力先
       filename: 'index.html', // 出力するHTMLのファイル名
       template: 'index.html', // 出力するためのHTMLのテンプレート
