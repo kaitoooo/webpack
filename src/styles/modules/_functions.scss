@@ -1,5 +1,3 @@
-@import '../modules/variables';
-
 // vwの取得($size:表示したいpxを指定、$pc-base-size:variable.scssに指定)
 @function get_vw($size, $viewport: $pc-base-size) {
   $rate: 100 / $viewport;
