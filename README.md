@@ -17,3 +17,7 @@ npm install swiper --save-dev
 # vue インストール
 
 npm install vue vue-loader vue-template-compiler --save-dev
+
+# キャッシュパラメータ付与
+
+<%= htmlWebpackPlugin.options.cacheParam %>
