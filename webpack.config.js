@@ -43,12 +43,20 @@ module.exports = {
         test: /\.js$/,
         use: [
           {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
+              loader: 'babel-loader',
+              options: {
+                  presets: [
+                      [
+                          '@babel/preset-env',
+                          {
+                              useBuiltIns: 'usage',
+                              corejs: 3,
+                          },
+                      ],
+                  ],
+              },
           },
-        ],
+      ],
         exclude: /node_modules/,
         // swiper使用時
         // exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/,
