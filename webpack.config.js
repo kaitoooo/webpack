@@ -8,6 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // キャッシュパラメータを付与する
 const cacheParam = new Date().getTime().toString();
+// 画像をコピーする
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // 'development' | 'production'
@@ -68,15 +70,15 @@ module.exports = {
       },
       // CSSでbackground-imageを使う
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.(gif|png|jpg|eot|wof|woff|woff2|ttf|svg)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'img/common/',
+              outputPath: '/img/',
               publicPath: function (path) {
-                return '../img/common/' + path;
+                return '../img/' + path;
               },
             },
           },
@@ -93,6 +95,18 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(src, 'img'),
+          to: path.resolve(dist, 'img'),
+          toType: 'dir',
+          globOptions: {
+            ignore: ['*.DS_Store', '**/.gitkeep'],
+          },
+        },
+      ],
     }),
     new HtmlWebpackPlugin({
       cacheParam: '?ver=' + cacheParam, // キャッシュパラメータ付与
