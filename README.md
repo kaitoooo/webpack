@@ -1,3 +1,11 @@
+# キャッシュ削除
+
+npm cache clean
+
+# 脆弱性のあるパッケージを修正
+
+npm audit fix
+
 # package.json に書かれているすべてのパッケージをインストールする
 
 npm install
