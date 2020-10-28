@@ -68,7 +68,7 @@ module.exports = {
         test: /\.(sc|c|sa)ss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
-      // CSSでbackground-imageを使う
+      // background-imageで使用する画像を別ディレクトリに書き出す
       {
         test: /\.(gif|png|jpg|eot|wof|woff|woff2|ttf|svg)$/,
         use: [
@@ -76,9 +76,9 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '/img/',
+              outputPath: 'img/assets/',
               publicPath: function (path) {
-                return '../img/' + path;
+                return '../img/assets/' + path;
               },
             },
           },
@@ -96,6 +96,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
     }),
+    //コピーする対象を選択
     new CopyWebpackPlugin({
       patterns: [
         {
