@@ -1,4 +1,4 @@
-import '../styles/style.scss';
+import '../style/style.scss';
 import picturefill from 'picturefill';
 picturefill();
 
@@ -12,7 +12,6 @@ export default class App {
             false
         );
     }
-    init() {
-    }
+    init() {}
 }
 new App();
