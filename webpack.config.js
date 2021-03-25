@@ -32,8 +32,7 @@ module.exports = {
     // ローカル開発用環境を立ち上げる
     devServer: {
         open: true,
-        // contentBase: src,
-        contentBase: path.resolve(__dirname, 'dist/'),
+        contentBase: src,
         inline: true,
         hot: true,
         watchContentBase: true,
