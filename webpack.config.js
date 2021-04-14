@@ -13,6 +13,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // 古いファイルと未使用のファイルを削除するため
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Sass = require('sass');
+// LICENSE.txtを出力させない
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     // 'development' | 'production'
@@ -42,6 +44,13 @@ module.exports = {
     resolve: {
         modules: [src, 'node_modules'],
         extensions: ['.js'],
+    },
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false,
+            }),
+        ],
     },
     module: {
         rules: [
